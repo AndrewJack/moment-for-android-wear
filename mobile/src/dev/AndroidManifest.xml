@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="technology.mainthread.apps.moment">
+
+    <permission
+        android:name="technology.mainthread.apps.moment.dev.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="technology.mainthread.apps.moment.dev.permission.C2D_MESSAGE" />
+
+    <application>
+        <!-- Receivers -->
+        <receiver
+            android:name=".background.receiver.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="technology.mainthread.apps.moment.dev" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

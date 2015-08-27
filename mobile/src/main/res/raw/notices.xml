@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+    <notice>
+        <name>Dagger 2</name>
+        <url>https://github.com/google/dagger</url>
+        <copyright>Copyright 2012 Google, Inc.&lt;br/&gt;Copyright 2012 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>RxJava</name>
+        <url>https://github.com/ReactiveX/RxJava</url>
+        <copyright>Copyright 2013 Netflix, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>RxAndroid</name>
+        <url>https://github.com/ReactiveX/RxAndroid</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>BezelImageView</name>
+        <url>https://github.com/google/iosched</url>
+        <copyright>Copyright 2014 Google Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>OkHttp</name>
+        <url>https://github.com/square/okhttp</url>
+        <copyright>Copyright 2014 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>Picasso</name>
+        <url>http://square.github.io/picasso</url>
+        <copyright>Copyright 2013 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>Otto</name>
+        <url>https://github.com/square/otto</url>
+        <copyright>Copyright 2012 Square, Inc.&lt;br/&gt;Copyright 2010 Google, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>Butter Knife</name>
+        <url>http://jakewharton.github.io/butterknife</url>
+        <copyright>Copyright 2013 Jake Wharton</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>Timber</name>
+        <url>https://github.com/JakeWharton/timber</url>
+        <copyright>Copyright 2013 Jake Wharton</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>Material Dialogs</name>
+        <url>https://github.com/afollestad/material-dialogs</url>
+        <copyright>Copyright 2014 Aidan Michael Follestad</copyright>
+        <license>MIT License</license>
+    </notice>
+
+    <notice>
+        <name>RippleEffect</name>
+        <url>https://github.com/traex/RippleEffect</url>
+        <copyright>Copyright 2014 Robin Chutaux</copyright>
+        <license>MIT License</license>
+    </notice>
+</notices>

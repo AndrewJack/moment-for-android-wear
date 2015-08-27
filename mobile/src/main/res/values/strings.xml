@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Moment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="signed_out_display_name">Signed out</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_no">No</string>
+
+    <!-- Titles -->
+    <string name="title_home">Home</string>
+    <string name="title_moment">Moments</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_friend_discovery">Find Friends</string>
+    <string name="title_moment_view">View Moment</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_menu_add_friends">Add Friends</string>
+    <string name="tab_title_requests">Added Me</string>
+    <string name="tab_title_google_plus">Google+</string>
+    <string name="tab_title_received">Received</string>
+    <string name="tab_title_sent">Sent</string>
+
+    <!-- Google sign in fragment -->
+    <string name="play_services_error">Google Play services is not available.  This application will close.</string>
+    <string name="close">Close</string>
+    <string name="sign_in_large_text">Welcome</string>
+    <string name="sign_in_small_text">To start using Moment, sign in with your Google+ account</string>
+    <string name="sign_in_continue">Continue</string>
+
+    <!-- Wearables Fragment -->
+    <string name="searching_for_wearables">Searching for wearables&#8230;</string>
+    <string name="result_wearables_found">Found wearable!</string>
+    <string name="result_wearables_found_detail">Let\'s get started</string>
+    <string name="result_wearables_not_found">Can\'t find wearable</string>
+    <string name="result_wearables_not_found_detail">To send Moments you need an Android Wear device, but you can still receive Moments on the mobile app.</string>
+    <string name="wearable_status">Wearable status image</string>
+
+    <!-- Friend discovery -->
+    <string name="searching_friends">searching your circles&#8230;</string>
+    <string name="added_friends">finding friends&#8230;</string>
+    <string name="no_friends_found">No friends found :(</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="toast_friend_add_error">Couldn\'t add friend</string>
+    <string name="toast_friend_remove_error">Couldn\'t remove friend</string>
+    <string name="zero_friend_requests">No one has added you yet :(</string>
+
+    <!-- Force update dialog -->
+    <string name="force_update_title">Moment needs to update</string>
+    <string name="force_update_content">The update can be found on the Google Play Store</string>
+    <string name="force_update_positive">Update</string>
+    <string name="force_update_negative">Cancel</string>
+    <string name="play_store_app_uri">market://details?id=%s</string>
+    <string name="play_store_web_uri">https://play.google.com/store/apps/details?id=%s</string>
+
+    <!-- Settings -->
+    <string name="group_title_analytics">Statistics</string>
+    <string name="key_analytics">key_analytics</string>
+    <string name="title_analytics">Help improve Moment</string>
+    <string name="summary_analytics">Send Main Thread Technology statistics about your interactions with Moment</string>
+
+    <string name="group_title_about_dev">Developer</string>
+    <string name="title_contact_dev">Contact developers</string>
+    <string name="title_other_apps">Other apps</string>
+    <string name="title_privacy">Privacy policy</string>
+    <string name="title_os_licences">Open source licences</string>
+    <string name="title_version">Version</string>
+    <string name="key_version">key_version</string>
+    <string name="version_name_error">Cannot find version</string>
+    <string name="key_os_licences">key_os_licences</string>
+
+    <string name="group_title_account_details">My Account</string>
+    <string name="key_current_user">key_current_user</string>
+    <string name="title_user_signed_out">Sign in</string>
+    <string name="title_user_signed_in">Current user</string>
+    <string name="summary_user_signed_out">Go back to the home page to sign in.</string>
+    <string name="summary_user_signed_in">Signed in as %1$s (%2$s)</string>
+
+    <string name="group_title_account_actions">Account Actions</string>
+    <string name="key_logout">key_logout</string>
+    <string name="title_logout">Log out</string>
+    <string name="key_delete">key_delete</string>
+    <string name="title_delete">Remove account</string>
+    <string name="summary_delete">This will completely remove your account and all of your data</string>
+
+    <string name="dialog_title">Are you sure?</string>
+    <string name="dialog_message_logout">If you log out you will not receive any more moments</string>
+    <string name="dialog_message_delete">Your account will be deleted along with all your data</string>
+    <string name="dialog_logging_out">Logging out</string>
+    <string name="dialog_delete_friend">Delete Friend?</string>
+
+    <!-- Unsorted strings -->
+    <string name="button_text_show_on_wear">Show on wear</string>
+    <string name="error_sign_out">Can\'t sign out</string>
+    <string name="sent_by">Sent by %s</string>
+    <string name="sent_to">Sent to %s</string>
+
+</resources>

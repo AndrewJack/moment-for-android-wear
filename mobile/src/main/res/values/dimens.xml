@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="navdrawer_current_user_height">120dp</dimen>
+
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="loader_view_width_height">50dp</dimen>
+    <dimen name="list_item_end_padding">20dp</dimen>
+    <dimen name="friend_profile_img_padding">20dp</dimen>
+    <dimen name="bezel_img_width_height">40dp</dimen>
+
+</resources>

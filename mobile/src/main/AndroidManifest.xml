@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="technology.mainthread.apps.moment">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <application
+        android:name=".MomentApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="YOUR_ID" />
+
+        <!-- Activities -->
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.FriendDiscoveryActivity"
+            android:label="@string/title_friend_discovery"
+            android:parentActivityName=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.MomentActivity"
+            android:label="@string/title_moment_view"
+            android:parentActivityName=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:label="@string/title_settings"
+            android:parentActivityName=".ui.activity.MainActivity" />
+        <!-- Activities -->
+
+
+        <!-- Receivers -->
+        <receiver
+            android:name=".background.receiver.ConnectivityBroadcastReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".background.receiver.AccountChangedReceiver">
+            <intent-filter>
+                <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <!-- /Receivers -->
+
+
+        <!-- Services -->
+        <service android:name=".background.service.GcmListenerService" />
+        <service
+            android:name=".background.service.MomentWearListenerService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".background.sync.MomentAuthenticationService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+        <service
+            android:name=".background.sync.MomentSyncService"
+            android:process=":sync"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+        <service
+            android:name=".background.service.MomentSenderService"
+            android:exported="false" />
+        <service
+            android:name=".background.service.UpdateFriendsIntentService"
+            android:exported="false" />
+        <!-- /Services -->
+
+        <!-- Providers -->
+        <provider
+            android:name=".background.sync.StubProvider"
+            android:authorities="@string/content_authority"
+            android:exported="false"
+            android:syncable="true" />
+        <!-- /Providers -->
+    </application>
+
+</manifest>

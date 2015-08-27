@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_box="left|bottom|right">
+
+        <android.support.wearable.view.WearableListView
+            android:id="@+id/list_friends"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:dividerHeight="0dp"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/container_sending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.wearable.view.DelayedConfirmationView
+                android:id="@+id/delayed_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_clear_24dp"
+                app:circle_border_color="@color/accent"
+                app:circle_border_width="5dp"
+                app:circle_color="@color/primary"
+                app:circle_padding="5dp"
+                app:circle_radius="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="@string/sending_message"
+                android:textColor="@color/grey" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_no_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="@string/no_friends_message"
+            android:visibility="gone" />
+
+    </FrameLayout>
+</android.support.wearable.view.BoxInsetLayout>

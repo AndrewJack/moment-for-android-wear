@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyDashes">
+    <string name="gcm_sender_id">YOUR_ID</string>
+    <string name="web_client_id">YOUR_ID.apps.googleusercontent.com</string>
+    <string name="local_root_url">http://192.168.0.2:8888/_ah/api</string>
+    <string name="account_type">technology.mainthread.apps.moment.local</string>
+    <string name="content_authority">technology.mainthread.apps.moment.local.provider</string>
+</resources>

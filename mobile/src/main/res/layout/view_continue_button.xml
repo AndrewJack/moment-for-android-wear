@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto">
+
+    <com.andexert.library.RippleView
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/selector_row"
+        android:gravity="center"
+        android:padding="20dp"
+        ripple:rv_type="rectangle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in_continue"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+    </com.andexert.library.RippleView>
+
+</merge>

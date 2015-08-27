@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Moment</string>
+
+    <!-- Notification messages -->
+    <string name="notification_new_moment_title">New Moment</string>
+    <string name="notification_new_moment_text">from %s</string>
+    <string name="notification_action_add">Add</string>
+    <string name="notification_added">%s has added you</string>
+    <string name="notification_added_back">%s has added you back</string>
+
+</resources>

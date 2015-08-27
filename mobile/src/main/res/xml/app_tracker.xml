@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyDashes,UnusedResources">
+
+    <integer name="ga_sessionTimeout">300</integer>
+    <bool name="ga_reportUncaughtExceptions">false</bool>
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.SignInFragment">
+        Moment HomeScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.FriendsFragment">
+        Moment FriendsScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.SettingsFragment">
+        Moment SettingsScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.FriendDiscoveryFragment">
+        Moment FriendDiscoveryScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.FriendRequestsFragment">
+        Moment FriendRequestsScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.PendingFriendsFragment">
+        Moment PendingFriendsScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.FriendFinderFragment">
+        Moment FriendFinderScreen
+    </screenName>
+    <screenName name="technology.mainthread.apps.moment.ui.fragment.FriendSearchFragment">
+        Moment FriendSearchScreen
+    </screenName>
+
+    <string name="ga_trackingId">YOUR_ID</string>
+
+</resources>

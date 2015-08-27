@@ -1,0 +1,23 @@
+machine:
+    environment:
+        GRADLE_OPTS: -Xmx512m -XX:MaxPermSize=512m
+
+dependencies:
+    pre:
+        - echo y | android update sdk --no-ui --all --filter platform-tools,tools,android-23,build-tools-23.0.0,extra-android-m2repository,extra-android-support,extra-google-m2repository
+    cache_directories:
+        - ~/.android
+    override:
+        - ./gradlew dependencies
+
+test:
+    override:
+        - ./gradlew clean build -PdisablePreDex --stacktrace
+    post:
+        - ls
+        - ls mobile
+        - ls mobile/build
+        - mkdir $CIRCLE_ARTIFACTS/lint
+        - mv mobile/build/outputs/lint-results* $CIRCLE_ARTIFACTS/lint
+        - mkdir $CIRCLE_ARTIFACTS/apk
+        - mv mobile/build/outputs/apk* $CIRCLE_ARTIFACTS/apk

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/group_title_account_details">
+
+        <Preference
+            android:key="@string/key_current_user"
+            android:title="@string/title_user_signed_out"
+            android:summary="@string/summary_user_signed_out"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/group_title_analytics">
+
+        <SwitchPreference
+            android:key="@string/key_analytics"
+            android:title="@string/title_analytics"
+            android:summary="@string/summary_analytics"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/group_title_about_dev">
+
+        <PreferenceScreen android:title="@string/title_contact_dev">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="mailto:hello@mainthread.technology" />
+        </PreferenceScreen>
+
+        <PreferenceScreen android:title="@string/title_other_apps">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="market://search?q=pub:MainThread+Technology" />
+        </PreferenceScreen>
+
+        <PreferenceScreen android:title="@string/title_privacy">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://mainthread.technology/apps/moment/privacy.html" />
+        </PreferenceScreen>
+
+        <Preference
+            android:key="@string/key_os_licences"
+            android:title="@string/title_os_licences" />
+
+        <Preference
+            android:key="@string/key_version"
+            android:title="@string/title_version" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/group_title_account_actions">
+
+        <Preference
+            android:key="@string/key_logout"
+            android:title="@string/title_logout" />
+
+        <Preference
+            android:key="@string/key_delete"
+            android:title="@string/title_delete"
+            android:summary="@string/summary_delete"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

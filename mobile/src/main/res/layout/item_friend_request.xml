@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlSymmetry"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/txt_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_xlarge"
+        android:padding="25dp"/>
+
+    <technology.mainthread.apps.moment.ui.view.LoaderCheckBox
+        android:id="@+id/loader_accept"
+        android:layout_width="@dimen/loader_view_width_height"
+        android:layout_height="@dimen/loader_view_width_height"
+        android:paddingEnd="@dimen/list_item_end_padding"
+        android:layout_gravity="center_vertical|end" />
+
+</FrameLayout>

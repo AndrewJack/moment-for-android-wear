@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Notifications -->
+    <string name="notification_action_reply">Reply</string>
+    <string name="notification_action_message">Message</string>
+
+    <!-- DrawingActivity -->
+    <string name="help_start_drawing">Start Drawing</string>
+    <string name="help_double_tap">Double tap to send</string>
+    <string name="drawing_cleared">Drawing cleared</string>
+
+    <!-- SenderActivity -->
+    <string name="sending_message">Sending&#8230;</string>
+    <string name="sending_moment_failed">Unable to send Moment</string>
+    <string name="no_friends_message">You have no friends :(\n\nAdd friends with the mobile app</string>
+
+</resources>

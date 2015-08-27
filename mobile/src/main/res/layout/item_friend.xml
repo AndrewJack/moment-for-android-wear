@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <technology.mainthread.apps.moment.ui.view.BezelImageView
+            android:id="@+id/img_friend_profile_image"
+            android:layout_width="@dimen/bezel_img_width_height"
+            android:layout_height="@dimen/bezel_img_width_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/friend_profile_img_padding"
+            android:scaleType="centerCrop"
+            android:src="@drawable/person_image_empty"
+            app:maskDrawable="@drawable/circle_mask" />
+
+        <TextView
+            android:id="@+id/txt_display_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:textSize="@dimen/text_size_xlarge" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:paddingEnd="@dimen/list_item_end_padding"
+        android:src="@drawable/ic_delete"
+        tools:ignore="ContentDescription" />
+
+</FrameLayout>
