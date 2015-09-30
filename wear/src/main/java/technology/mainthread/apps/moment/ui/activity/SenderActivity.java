@@ -2,7 +2,6 @@ package technology.mainthread.apps.moment.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.view.DelayedConfirmationView;
@@ -57,7 +56,7 @@ public class SenderActivity extends RxActivity implements WearableListView.Click
     private long selectedUserId;
     private Subscription sendDrawingSubscriber = Subscriptions.empty();
 
-    public static Intent getRecipientSelectorIntent(Context context, long recipient, Bitmap drawing) {
+    public static Intent getRecipientSelectorIntent(Context context, long recipient, byte[] drawing) {
         Intent intent = new Intent(context, SenderActivity.class);
         intent.putExtra(PARAM_RECIPIENT, recipient);
         intent.putExtra(PARAM_DRAWING, drawing);
@@ -116,7 +115,7 @@ public class SenderActivity extends RxActivity implements WearableListView.Click
     @Override
     public void onTimerFinished(View view) {
         notifier.cancelNotification(Notifier.ID_ADD);
-        Bitmap drawing = getIntent().getParcelableExtra(PARAM_DRAWING);
+        byte[] drawing = getIntent().getByteArrayExtra(PARAM_DRAWING);
         Observable<Void> sendDrawingObservable = wearSender.sendDrawing(selectedUserId, drawing)
                 .compose(this.<Void>bindToLifecycle())
                 .compose(RxSchedulerHelper.<Void>applySchedulers());

@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.RxActivity;
 
+import java.io.ByteArrayOutputStream;
+
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -170,8 +172,12 @@ public class DrawActivity extends RxActivity implements DrawingView.DrawingListe
     }
 
     private void finishedDrawing(Bitmap drawing) {
+        Timber.d("compressing bitmap");
+        ByteArrayOutputStream bs = new ByteArrayOutputStream();
+        drawing.compress(Bitmap.CompressFormat.PNG, 0, bs);
+
         Timber.d("Opening sender activity, drawing is %d bytes", drawing.getByteCount());
-        startActivity(SenderActivity.getRecipientSelectorIntent(this, getIntent().getLongExtra(PARAM_RECIPIENT, 0), drawing));
+        startActivity(SenderActivity.getRecipientSelectorIntent(this, getIntent().getLongExtra(PARAM_RECIPIENT, 0), bs.toByteArray()));
     }
 
     @Override

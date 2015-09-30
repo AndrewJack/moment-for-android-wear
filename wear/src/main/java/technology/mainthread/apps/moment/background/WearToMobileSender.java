@@ -1,7 +1,5 @@
 package technology.mainthread.apps.moment.background;
 
-import android.graphics.Bitmap;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -10,7 +8,6 @@ import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.Wearable;
 
-import java.io.ByteArrayOutputStream;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -32,15 +29,13 @@ public class WearToMobileSender {
         this.preferences = preferences;
     }
 
-    public rx.Observable<Void> sendDrawing(final Long recipient, final Bitmap drawing) {
+    public rx.Observable<Void> sendDrawing(final Long recipient, final byte[] drawing) {
         return rx.Observable.create(new rx.Observable.OnSubscribe<Void>() {
             @Override
             public void call(final Subscriber<? super Void> subscriber) {
                 if (drawing != null) {
                     Timber.d("Making asset");
-                    final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-                    drawing.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
-                    Asset asset = Asset.createFromBytes(byteStream.toByteArray());
+                    Asset asset = Asset.createFromBytes(drawing);
 
                     PutDataMapRequest dataMap = PutDataMapRequest.create(Constants.PATH_NEW_MOMENT);
                     dataMap.getDataMap().putLong(Constants.KEY_RECIPIENT, recipient);
