@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -8,7 +9,6 @@ repositories {
 android {
     compileSdkVersion compileAndTargetSdkLevel
     buildToolsVersion buildTools
-    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "technology.mainthread.apps.moment"
@@ -94,8 +94,9 @@ dependencies {
     prodWearApp project(path: ':wear', configuration: 'prodRelease')
 
     // Google Android Libraries
-    compile "com.google.android.gms:play-services-base:${commonPlayServicesVersion}"
-    compile "com.google.android.gms:play-services-analytics:${commonPlayServicesVersion}"
+    compile ("com.google.android.gms:play-services-analytics:${commonPlayServicesVersion}") {
+        exclude module: 'play-services-ads'
+    }
     compile "com.google.android.gms:play-services-gcm:${commonPlayServicesVersion}"
     compile "com.google.android.gms:play-services-plus:${commonPlayServicesVersion}"
     compile "com.google.android.gms:play-services-identity:${commonPlayServicesVersion}"
@@ -112,13 +113,20 @@ dependencies {
     compile "com.squareup.okhttp:okhttp:2.5.0"
     compile "com.squareup.picasso:picasso:2.5.2"
     compile('de.psdev.licensesdialog:licensesdialog:1.8.0') { exclude module: 'support-v4' }
-    compile 'com.afollestad:material-dialogs:0.7.8.1'
+    compile 'com.afollestad:material-dialogs:0.7.9.1'
 
     // dev tools
-    debugCompile "com.facebook.stetho:stetho:1.1.1"
-    debugCompile "com.facebook.stetho:stetho-okhttp:1.1.1"
+    debugCompile "com.facebook.stetho:stetho:1.2.0"
+    debugCompile "com.facebook.stetho:stetho-okhttp:1.2.0"
     debugCompile "com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT"
+}
+
+dexcount {
+    includeClasses = false
+    includeFieldCount = false
+    printAsTree = true
+    orderByMethodCount = true
 }
 
 android.variantFilter { variant ->
