@@ -11,7 +11,7 @@ public class Config {
     public static final String BLOB_UPLOAD = "/blob/upload";
 
     public static final int BACKEND_VERSION = 2;
-    public static final int MIN_ANDROID_VERSION_CODE = 1000000;
+    public static final int MIN_ANDROID_VERSION_CODE = 1010000;
 
     public static final String WEB_CLIENT_ID = "<YOUR_ID>.apps.googleusercontent.com";
     public static final String ANDROID_CLIENT_ID_DEBUG = "<YOUR_ID>.apps.googleusercontent.com";
