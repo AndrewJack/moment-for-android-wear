@@ -37,7 +37,7 @@ public class MomentAppModule {
     @Provides
     @Singleton
     Context provideApplicationContext() {
-        return application;
+        return application.getApplicationContext();
     }
 
     @Provides

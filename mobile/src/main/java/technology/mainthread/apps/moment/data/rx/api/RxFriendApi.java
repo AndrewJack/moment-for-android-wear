@@ -17,7 +17,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.common.Constants;
 import technology.mainthread.apps.moment.data.GooglePlusApi;
 import technology.mainthread.apps.moment.data.prefs.MomentPreferences;
@@ -64,7 +63,7 @@ public class RxFriendApi {
                     if (response != null && response.getItems() != null) {
                         subscriber.onNext(response.getItems());
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("friends fetching failed"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "Getting friends failed");
@@ -72,7 +71,7 @@ public class RxFriendApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<List<FriendResponse>> requests() {
@@ -87,7 +86,7 @@ public class RxFriendApi {
                     if (response != null && response.getItems() != null) {
                         subscriber.onNext(response.getItems());
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("fetching friend requests failed"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "Getting friend requests failed");
@@ -95,7 +94,7 @@ public class RxFriendApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<List<FriendResponse>> search() {
@@ -112,10 +111,10 @@ public class RxFriendApi {
                         if (response != null && response.getItems() != null) {
                             subscriber.onNext(response.getItems());
                         } else {
-                            subscriber.onError(null);
+                            subscriber.onError(new Exception("friends search response null"));
                         }
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new IllegalArgumentException("google plus id list empty"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "Search friends failed");
@@ -123,7 +122,7 @@ public class RxFriendApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private List<String> getCurrentUsersGooglePlusIds() {
@@ -165,7 +164,7 @@ public class RxFriendApi {
                         subscriber.onNext(null);
                     } else {
                         Timber.w("Adding friend %d failed", friendId);
-                        subscriber.onError(null);
+                        subscriber.onError(new IllegalArgumentException("friend id was zero"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "Adding friends %d failed", friendId);
@@ -173,7 +172,7 @@ public class RxFriendApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<Void> remove(final long friendId) {
@@ -192,7 +191,7 @@ public class RxFriendApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private void trackFriendAction(String action) {

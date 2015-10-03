@@ -7,7 +7,6 @@ import javax.inject.Singleton;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.data.bus.DatabaseChangeEvent;
 import technology.mainthread.apps.moment.data.bus.RxBus;
 import technology.mainthread.apps.moment.data.api.FriendsSync;
@@ -41,7 +40,7 @@ public class RxSyncFriends {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
 }

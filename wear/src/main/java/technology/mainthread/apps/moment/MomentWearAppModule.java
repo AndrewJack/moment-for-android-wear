@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.hardware.SensorManager;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
@@ -63,4 +64,9 @@ public class MomentWearAppModule {
         return (SensorManager) application.getSystemService(Context.SENSOR_SERVICE);
     }
 
+    @Provides
+    @Singleton
+    GoogleApiAvailability provideGoogleApiAvailability() {
+        return GoogleApiAvailability.getInstance();
+    }
 }

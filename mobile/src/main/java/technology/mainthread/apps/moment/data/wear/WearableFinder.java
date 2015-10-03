@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.common.Constants;
 import technology.mainthread.apps.moment.data.WearApi;
 import timber.log.Timber;
@@ -49,7 +48,7 @@ public class WearableFinder {
                 subscriber.onCompleted();
             }
 
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
 }

@@ -19,7 +19,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.common.Constants;
 import technology.mainthread.apps.moment.data.WearApi;
 import technology.mainthread.service.moment.momentApi.MomentApi;
@@ -56,7 +55,7 @@ public class RxWearNotifier {
                 subscriber.onCompleted();
             }
 
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private boolean getMomentAndSendToWear(final long momentId) throws IOException {

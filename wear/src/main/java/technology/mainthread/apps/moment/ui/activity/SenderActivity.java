@@ -30,6 +30,7 @@ import technology.mainthread.apps.moment.data.db.AsyncWearFriends;
 import technology.mainthread.apps.moment.data.prefs.WearMomentPreferences;
 import technology.mainthread.apps.moment.ui.adapter.WearFriendsAdapter;
 import technology.mainthread.apps.moment.ui.notification.Notifier;
+import timber.log.Timber;
 
 public class SenderActivity extends RxActivity implements WearableListView.ClickListener, DelayedConfirmationView.DelayedConfirmationListener {
 
@@ -127,6 +128,7 @@ public class SenderActivity extends RxActivity implements WearableListView.Click
 
             @Override
             public void onError(Throwable e) {
+                Timber.d("Sending failed: %s", e.getMessage());
                 Intent intent = new Intent(SenderActivity.this, ConfirmationActivity.class);
                 intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.FAILURE_ANIMATION);
                 intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.sending_moment_failed));

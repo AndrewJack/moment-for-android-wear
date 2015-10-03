@@ -78,7 +78,7 @@ public class RxMomentApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private String uploadDrawingBitmap(String uploadUrl, Bitmap drawing) throws IOException, JSONException {
@@ -117,7 +117,7 @@ public class RxMomentApi {
                     if (response != null) {
                         subscriber.onNext(response);
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception(String.format("fetching moment %s failed", id)));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "get moment failed");
@@ -125,7 +125,7 @@ public class RxMomentApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<List<MomentResponse>> allSent() {
@@ -140,7 +140,7 @@ public class RxMomentApi {
                     if (response != null) {
                         subscriber.onNext(response.getItems());
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("fetching send moments failed"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "get all sent moments failed");
@@ -148,7 +148,7 @@ public class RxMomentApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<List<MomentResponse>> allReceived() {
@@ -163,7 +163,7 @@ public class RxMomentApi {
                     if (response != null) {
                         subscriber.onNext(response.getItems());
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("fetching received moments failed"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "get all received moments failed");
@@ -171,7 +171,7 @@ public class RxMomentApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private void trackMomentAction(String action) {

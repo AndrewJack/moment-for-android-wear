@@ -73,18 +73,27 @@ public class MainActivity extends BaseActivity implements SignInStateUpdater {
         setContentView(R.layout.activity_drawer);
 
 
-        int playServicesAvailable = googleApiAvailability.isGooglePlayServicesAvailable(this);
-        if (playServicesAvailable != SUCCESS) {
-            googleApiAvailability.getErrorDialog(this, playServicesAvailable, RC_PLAY_SERVICES_ERROR).show();
+        if (checkGooglePlayServices()) {
+            checkForNewVersion();
+
+            if (getFragmentManager().findFragmentById(R.id.container) == null) {
+                updateSignInState();
+            }
+
+            registerRxBus();
         }
+    }
 
-        checkForNewVersion();
-
-        if (getFragmentManager().findFragmentById(R.id.container) == null) {
-            updateSignInState();
+    private boolean checkGooglePlayServices() {
+        int status = googleApiAvailability.isGooglePlayServicesAvailable(this);
+        if (status != SUCCESS) {
+            googleApiAvailability.showErrorNotification(this, status);
+            googleApiAvailability.getErrorDialog(this, status, RC_PLAY_SERVICES_ERROR).show();
+            return false;
+        } else {
+            Timber.d("google plays services status: %s", googleApiAvailability.getErrorString(status));
+            return true;
         }
-
-        registerRxBus();
     }
 
     private void registerRxBus() {

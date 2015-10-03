@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.service.moment.configApi.ConfigApi;
 import technology.mainthread.service.moment.configApi.model.ConfigResponse;
 import timber.log.Timber;
@@ -28,7 +27,7 @@ public class RxConfigApi {
                     if (response != null) {
                         subscriber.onNext(response);
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("config fetch failed"));
                     }
                 } catch (Exception e) {
                     Timber.w(e, "config fetch failed");
@@ -36,6 +35,6 @@ public class RxConfigApi {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 }

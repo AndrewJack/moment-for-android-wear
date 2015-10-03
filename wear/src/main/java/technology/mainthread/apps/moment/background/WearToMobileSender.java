@@ -1,6 +1,9 @@
 package technology.mainthread.apps.moment.background;
 
+import android.content.Context;
+
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.wearable.Asset;
@@ -13,19 +16,22 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.common.Constants;
 import technology.mainthread.apps.moment.data.prefs.WearMomentPreferences;
 import timber.log.Timber;
 
 public class WearToMobileSender {
 
+    private final Context context;
     private final GoogleApiClient mGoogleApiClient;
+    private final GoogleApiAvailability googleApiAvailability;
     private final WearMomentPreferences preferences;
 
     @Inject
-    public WearToMobileSender(GoogleApiClient mGoogleApiClient, WearMomentPreferences preferences) {
+    public WearToMobileSender(Context context, GoogleApiClient mGoogleApiClient, GoogleApiAvailability googleApiAvailability, WearMomentPreferences preferences) {
+        this.context = context;
         this.mGoogleApiClient = mGoogleApiClient;
+        this.googleApiAvailability = googleApiAvailability;
         this.preferences = preferences;
     }
 
@@ -44,7 +50,7 @@ public class WearToMobileSender {
                     ConnectionResult connectionResult = mGoogleApiClient.blockingConnect(
                             Constants.CONNECTION_TIME_OUT_MS, TimeUnit.MILLISECONDS);
 
-                    if (connectionResult.isSuccess()) { // TODO: && hasConnectedNodes() ??
+                    if (connectionResult.isSuccess()) {
                         PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
                                 .putDataItem(mGoogleApiClient, dataMap.asPutDataRequest());
 
@@ -54,11 +60,12 @@ public class WearToMobileSender {
                         if (result.getStatus().isSuccess()) {
                             subscriber.onNext(null);
                         } else {
-                            subscriber.onError(null);
+                            subscriber.onError(new Exception("drawing failed to send"));
                         }
                     } else {
-                        Timber.e("Cannot connect to wear api or mobile node");
-                        subscriber.onError(null);
+                        Timber.e("Cannot connect to wear api");
+                        googleApiAvailability.showErrorNotification(context, connectionResult.getErrorCode());
+                        subscriber.onError(new Exception("Cannot connect to wear api"));
                     }
 
                     if (mGoogleApiClient.isConnected()) {
@@ -66,12 +73,12 @@ public class WearToMobileSender {
                     }
                 } else {
                     Timber.w("Drawing is null");
-                    subscriber.onError(null);
+                    subscriber.onError(new Exception("Drawing is null"));
                 }
                 subscriber.onCompleted();
             }
 
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public rx.Observable<Void> requestFriendsSync() { // TODO: should this use the message api?
@@ -97,11 +104,11 @@ public class WearToMobileSender {
                         if (result.getStatus().isSuccess()) {
                             subscriber.onNext(null);
                         } else {
-                            subscriber.onError(null);
+                            subscriber.onError(new Exception("request sync failed to send"));
                         }
                     } else {
                         Timber.e("Cannot connect to wear api or mobile node");
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("Cannot connect to wear api"));
                     }
 
                     if (mGoogleApiClient.isConnected()) {
@@ -111,6 +118,6 @@ public class WearToMobileSender {
                 subscriber.onCompleted();
             }
 
-        }).subscribeOn(Schedulers.io());
+        });
     }
 }

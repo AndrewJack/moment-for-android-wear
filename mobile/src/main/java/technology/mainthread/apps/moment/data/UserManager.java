@@ -16,7 +16,6 @@ import javax.inject.Singleton;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.R;
 import technology.mainthread.apps.moment.common.data.db.FriendsTable;
 import technology.mainthread.apps.moment.data.api.GooglePlusSignInRequester;
@@ -93,7 +92,7 @@ public class UserManager {
                         trackUserAction("sign in");
                         subscriber.onNext(null);
                     } else {
-                        subscriber.onError(null);
+                        subscriber.onError(new Exception("Sign in failed"));
                     }
                 } catch (Exception e) {
                     Timber.e(e, "Sign in failed");
@@ -102,7 +101,7 @@ public class UserManager {
 
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<Void> logOut() {
@@ -124,7 +123,7 @@ public class UserManager {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public Observable<Void> deleteAccount() {
@@ -146,7 +145,7 @@ public class UserManager {
                 }
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     public void requestSync() {
