@@ -21,6 +21,8 @@ import technology.mainthread.apps.moment.ui.fragment.WearablesFragment;
 
 public interface MomentGraph {
 
+    void inject(MomentApp momentApp);
+
     // Activity
     void inject(MainActivity mainActivity);
 
@@ -60,4 +62,5 @@ public interface MomentGraph {
     void inject(ConnectivityBroadcastReceiver connectivityBroadcastReceiver);
 
     void inject(AccountChangedReceiver accountChangedReceiver);
+
 }

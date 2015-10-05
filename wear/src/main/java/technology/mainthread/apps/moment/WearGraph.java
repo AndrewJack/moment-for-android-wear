@@ -8,6 +8,8 @@ import technology.mainthread.apps.moment.ui.activity.SenderActivity;
 
 public interface WearGraph {
 
+    void inject(MomentWearApp momentWearApp);
+
     // activity
     void inject(SenderActivity senderActivity);
 
@@ -19,4 +21,5 @@ public interface WearGraph {
     void inject(ErrorService errorService);
 
     void inject(WearEventsIntentService wearEventsIntentService);
+
 }

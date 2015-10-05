@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements SignInStateUpdater {
     private boolean checkGooglePlayServices() {
         int status = googleApiAvailability.isGooglePlayServicesAvailable(this);
         if (status != SUCCESS) {
-            googleApiAvailability.showErrorNotification(this, status);
             googleApiAvailability.getErrorDialog(this, status, RC_PLAY_SERVICES_ERROR).show();
             return false;
         } else {

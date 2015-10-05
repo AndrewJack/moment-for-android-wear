@@ -1,9 +1,6 @@
 package technology.mainthread.apps.moment.background;
 
-import android.content.Context;
-
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.wearable.Asset;
@@ -22,16 +19,12 @@ import timber.log.Timber;
 
 public class WearToMobileSender {
 
-    private final Context context;
     private final GoogleApiClient mGoogleApiClient;
-    private final GoogleApiAvailability googleApiAvailability;
     private final WearMomentPreferences preferences;
 
     @Inject
-    public WearToMobileSender(Context context, GoogleApiClient mGoogleApiClient, GoogleApiAvailability googleApiAvailability, WearMomentPreferences preferences) {
-        this.context = context;
+    public WearToMobileSender(GoogleApiClient mGoogleApiClient, WearMomentPreferences preferences) {
         this.mGoogleApiClient = mGoogleApiClient;
-        this.googleApiAvailability = googleApiAvailability;
         this.preferences = preferences;
     }
 
@@ -64,7 +57,6 @@ public class WearToMobileSender {
                         }
                     } else {
                         Timber.e("Cannot connect to wear api");
-                        googleApiAvailability.showErrorNotification(context, connectionResult.getErrorCode());
                         subscriber.onError(new Exception("Cannot connect to wear api"));
                     }
 
