@@ -16,11 +16,11 @@ import javax.inject.Inject;
 
 import rx.Observer;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.subscriptions.Subscriptions;
 import technology.mainthread.apps.moment.MomentApp;
 import technology.mainthread.apps.moment.background.ConnectivityHelper;
 import technology.mainthread.apps.moment.common.data.vo.Moment;
+import technology.mainthread.apps.moment.common.rx.RxSchedulerHelper;
 import technology.mainthread.apps.moment.data.db.MomentTable;
 import technology.mainthread.apps.moment.data.db.SyncMoment;
 import technology.mainthread.apps.moment.data.rx.api.RxMomentApi;
@@ -150,7 +150,8 @@ public class MomentSenderService extends Service {
         }
         if (drawing != null) {
             momentSubscription = rxMomentApi.send(moment.getRecipients(), drawing)
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Void>() {
+                    .compose(RxSchedulerHelper.<Void>applySchedulers())
+                    .subscribe(new Observer<Void>() {
                         @Override
                         public void onCompleted() {
                         }
