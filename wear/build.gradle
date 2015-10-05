@@ -59,7 +59,6 @@ android {
         }
         release {
             signingConfig signingConfigs.release
-            versionNameSuffix '_beta_' + gitSha()
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
