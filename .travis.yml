@@ -1,7 +1,6 @@
 language: android
 env:
-  global:
-    - GRADLE_OPTS="-Dorg.gradle.jvmargs='-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError'"
+  - GRADLE_OPTS="-Dorg.gradle.jvmargs='-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError'"
 android:
   components:
     # Uncomment the lines below if you want to
