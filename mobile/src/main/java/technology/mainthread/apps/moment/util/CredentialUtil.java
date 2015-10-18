@@ -5,6 +5,9 @@ import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 
 public class CredentialUtil {
 
+    private CredentialUtil() {
+    }
+
     public static AbstractGoogleJsonClient updateCredential(AbstractGoogleJsonClient.Builder builder, String accountName) {
         GoogleAccountCredential credential = (GoogleAccountCredential) builder.getHttpRequestInitializer();
         String selectedAccountName = credential.getSelectedAccountName();

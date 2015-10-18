@@ -57,10 +57,8 @@ public class UpdateFriendsIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_ADD_FRIEND.equals(action)) {
-                if (preferences.getUserId() != 0) {
+            if (ACTION_ADD_FRIEND.equals(action) && preferences.getUserId() != 0) {
                     addFriend(intent.getLongExtra(EXTRA_FRIEND_ID, 0));
-                }
             }
         }
     }

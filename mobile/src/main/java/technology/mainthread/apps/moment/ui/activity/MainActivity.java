@@ -72,7 +72,6 @@ public class MainActivity extends BaseActivity implements SignInStateUpdater {
 
         setContentView(R.layout.activity_drawer);
 
-
         if (checkGooglePlayServices()) {
             checkForNewVersion();
 

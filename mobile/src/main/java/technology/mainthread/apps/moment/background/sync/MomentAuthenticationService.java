@@ -3,7 +3,6 @@ package technology.mainthread.apps.moment.background.sync;
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
-import android.accounts.NetworkErrorException;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -38,19 +37,19 @@ public class MomentAuthenticationService extends Service {
 
         @Override
         public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType,
-                                 String[] requiredFeatures, Bundle options) throws NetworkErrorException {
+                                 String[] requiredFeatures, Bundle options) {
             return null;
         }
 
         @Override
         public Bundle confirmCredentials(AccountAuthenticatorResponse response,
-                                         Account account, Bundle options) throws NetworkErrorException {
+                                         Account account, Bundle options) {
             return null;
         }
 
         @Override
         public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account,
-                                   String authTokenType, Bundle options) throws NetworkErrorException {
+                                   String authTokenType, Bundle options) {
             return null;
         }
 
@@ -61,13 +60,13 @@ public class MomentAuthenticationService extends Service {
 
         @Override
         public Bundle updateCredentials(AccountAuthenticatorResponse response, Account account,
-                                        String authTokenType, Bundle options) throws NetworkErrorException {
+                                        String authTokenType, Bundle options) {
             return null;
         }
 
         @Override
         public Bundle hasFeatures(AccountAuthenticatorResponse response, Account account,
-                                  String[] features) throws NetworkErrorException {
+                                  String[] features) {
             return null;
         }
     }

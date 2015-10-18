@@ -9,8 +9,15 @@ import com.squareup.okhttp.OkHttpClient;
  */
 public class StethoUtil {
 
-    public static void setupStetho(Context context) {}
+    private StethoUtil() {
+    }
 
-    public static void addStethoInterceptor(OkHttpClient client) {}
+    public static void setupStetho(Context context) {
+
+    }
+
+    public static void addStethoInterceptor(OkHttpClient client) {
+
+    }
 
 }

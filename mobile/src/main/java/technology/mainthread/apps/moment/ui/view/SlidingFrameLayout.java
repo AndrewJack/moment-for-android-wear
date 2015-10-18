@@ -27,6 +27,6 @@ public class SlidingFrameLayout extends FrameLayout {
 
     public void setXFraction(float xFraction) {
         final int width = getWidth();
-        setX((width > 0) ? (xFraction * width) : -9999);
+        setX(width > 0 ? xFraction * width : -9999);
     }
 }

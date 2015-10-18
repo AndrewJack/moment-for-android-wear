@@ -71,7 +71,7 @@ public class UserManager {
     }
 
     public boolean isSignedIn() {
-        return (!isDeletingCredentials && getAccount() != null);
+        return !isDeletingCredentials && getAccount() != null;
     }
 
     public Observable<Void> signIn(final UserDetails userDetails) {
@@ -167,7 +167,6 @@ public class UserManager {
                     new Bundle(), syncFrequencySeconds);
         }
     }
-
 
     private Account getAccount() {
         if (currentAccount == null) {

@@ -97,7 +97,7 @@ public final class OkHttpTransport extends HttpTransport {
         }
 
         // SSL settings
-        if (connUrl.getProtocol().equals("https")) {
+        if ("https".equals(connUrl.getProtocol())) {
             if (hostnameVerifier != null) {
                 client.setHostnameVerifier(hostnameVerifier);
             }

@@ -7,6 +7,9 @@ import technology.mainthread.apps.moment.common.data.vo.Friend;
 
 public class ConvertUtil {
 
+    private ConvertUtil() {
+    }
+
     public static Friend toFriend(DataMap map) {
         return Friend.builder()
                 .recordId(map.getLong(Constants.KEY_FRIEND_ID))

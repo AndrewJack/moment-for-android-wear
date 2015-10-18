@@ -268,6 +268,8 @@ public class SignInFragment extends BaseFragment implements GoogleApiClient.Conn
                     mGoogleApiClient.connect();
                 }
                 break;
+            default:
+                break;
         }
     }
 

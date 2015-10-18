@@ -22,7 +22,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 import technology.mainthread.apps.moment.data.prefs.MomentPreferences;
 import technology.mainthread.apps.moment.util.CredentialUtil;
 import technology.mainthread.service.moment.momentApi.MomentApi;

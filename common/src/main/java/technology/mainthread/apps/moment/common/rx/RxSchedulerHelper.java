@@ -6,6 +6,9 @@ import rx.schedulers.Schedulers;
 
 public class RxSchedulerHelper {
 
+    private RxSchedulerHelper() {
+    }
+
     // http://blog.danlew.net/2015/03/02/dont-break-the-chain/
     public static <T> Observable.Transformer<T, T> applySchedulers() {
         return new Observable.Transformer<T, T>() {

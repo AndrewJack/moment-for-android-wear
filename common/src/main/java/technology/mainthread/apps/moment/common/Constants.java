@@ -2,6 +2,9 @@ package technology.mainthread.apps.moment.common;
 
 public class Constants {
 
+    private Constants() {
+    }
+
     // TIMEOUT
     public static final long CONNECTION_TIME_OUT_MS = 30 * 1000;
 

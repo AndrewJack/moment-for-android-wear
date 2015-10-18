@@ -17,7 +17,6 @@ import technology.mainthread.apps.moment.MomentApp;
 import technology.mainthread.apps.moment.data.api.FriendsSync;
 import timber.log.Timber;
 
-
 public class MomentSyncAdapter extends AbstractThreadedSyncAdapter {
 
     @Inject
@@ -50,6 +49,5 @@ public class MomentSyncAdapter extends AbstractThreadedSyncAdapter {
             Timber.w(e, "sync friends failed");
         }
     }
-
 
 }

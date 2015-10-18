@@ -53,6 +53,8 @@ public class WearMomentListenerService extends WearableListenerService {
                 case Constants.PATH_FRIENDS_REFRESH:
                     handleRefreshFriends(dataEvent);
                     break;
+                default:
+                    break;
             }
         }
     }

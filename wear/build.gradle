@@ -94,3 +94,5 @@ android.variantFilter { variant ->
         variant.setIgnore(false);
     }
 }
+
+apply from: '../config/static-analysis.gradle'

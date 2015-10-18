@@ -11,6 +11,9 @@ import com.squareup.okhttp.OkHttpClient;
  */
 public class StethoUtil {
 
+    private StethoUtil() {
+    }
+
     public static void setupStetho(Context context) {
         Stetho.initialize(Stetho.newInitializerBuilder(context)
                 .enableDumpapp(Stetho.defaultDumperPluginsProvider(context))

@@ -70,13 +70,16 @@ public class ErrorService extends IntentService {
             Timber.w(e, "Failed sending error to phone");
         } finally {
             try {
-                if (oos != null)
+                if (oos != null) {
                     oos.close();
-            } catch (IOException ignore) {
+                }
+            } catch (IOException e) {
+                Timber.e(e, "Object output stream close exception");
             }
             try {
                 bos.close();
-            } catch (IOException ignore) {
+            } catch (IOException e) {
+                Timber.e(e, "Byte array output stream close exception");
             }
         }
     }

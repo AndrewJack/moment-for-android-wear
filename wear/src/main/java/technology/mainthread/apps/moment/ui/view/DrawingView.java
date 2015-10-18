@@ -124,7 +124,7 @@ public class DrawingView extends View {
         postInvalidate();
     }
 
-    public static interface DrawingListener {
+    public interface DrawingListener {
 
         DrawingListener NO_OP = new DrawingListener() {
             @Override

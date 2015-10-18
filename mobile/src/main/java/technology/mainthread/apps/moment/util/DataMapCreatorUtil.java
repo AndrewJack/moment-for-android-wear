@@ -12,6 +12,9 @@ import technology.mainthread.service.moment.momentApi.model.MomentResponse;
 
 public class DataMapCreatorUtil {
 
+    private DataMapCreatorUtil() {
+    }
+
     public static PutDataMapRequest createNewMomentDataMap(MomentResponse moment, Bitmap drawing) {
         final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         drawing.compress(Bitmap.CompressFormat.PNG, 0 /*Ignored*/, byteStream);

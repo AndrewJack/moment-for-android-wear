@@ -1,6 +1,5 @@
 package technology.mainthread.apps.moment.data.api;
 
-
 import java.io.IOException;
 
 import javax.inject.Inject;

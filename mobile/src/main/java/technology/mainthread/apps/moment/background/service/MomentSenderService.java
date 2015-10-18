@@ -32,8 +32,9 @@ import static technology.mainthread.apps.moment.common.data.vo.MomentType.DRAWIN
 // TODO: convert to sync intent service
 public class MomentSenderService extends Service {
 
-
-    public enum StartCommand {START, SEND}
+    public enum StartCommand {
+        START, SEND
+    }
 
     private static final String PARAM_START_COMMAND = "param_start_command";
     private static final String PARAM_RECIPIENT = "param_recipient";
@@ -84,6 +85,8 @@ public class MomentSenderService extends Service {
                     long[] recipient = intent.getLongArrayExtra(PARAM_RECIPIENT);
                     Bitmap drawing = intent.getParcelableExtra(PARAM_DRAWING);
                     queueMoment(convertToList(recipient), drawing);
+                    break;
+                default:
                     break;
             }
         }

@@ -1,0 +1,47 @@
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+// comment this line to remove the static analysis tasks from the build task
+check.dependsOn 'checkstyle', 'findbugs', 'pmd'
+
+task checkstyle(type: Checkstyle) {
+    description 'Checks if the code passes quality standards'
+    group 'verification'
+
+    configFile file("${project(':').projectDir}/config/checkstyle/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    classpath = files()
+
+    ignoreFailures false
+    showViolations true
+}
+
+task findbugs(type: FindBugs, dependsOn: assembleDebug) {
+    description 'Finds bugs'
+    group 'verification'
+
+    ignoreFailures = true
+    classes = fileTree("$projectDir/build/intermediates/classes/")
+    source = fileTree("$projectDir/src/main/java/")
+    classpath = files()
+    excludeFilter = file("${project(':').projectDir}/config/findbugs/excludeFilter.xml")
+    effort = 'max'
+}
+
+task pmd(type: Pmd) {
+    description 'PMD scans Java source code and looks for potential problems'
+    group 'verification'
+
+    ignoreFailures = true
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+}

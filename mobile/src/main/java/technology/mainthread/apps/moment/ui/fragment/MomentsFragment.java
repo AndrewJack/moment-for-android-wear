@@ -106,13 +106,17 @@ public class MomentsFragment extends BaseFragment implements SwipeRefreshLayout.
 
     private void loadMoments() {
         MomentView momentView = (MomentView) getArguments().getSerializable(PARAM_MOMENT_VIEW);
-        switch (momentView) {
-            case RECEIVED:
-                getMoments(momentApi.allReceived());
-                break;
-            case SENT:
-                getMoments(momentApi.allSent());
-                break;
+        if (momentView != null) {
+            switch (momentView) {
+                case RECEIVED:
+                    getMoments(momentApi.allReceived());
+                    break;
+                case SENT:
+                    getMoments(momentApi.allSent());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

@@ -157,7 +157,7 @@ public class BezelImageView extends ImageView {
             if (mMaskDrawable != null) {
                 int sc = cacheCanvas.save();
                 mMaskDrawable.draw(cacheCanvas);
-                mMaskedPaint.setColorFilter((mDesaturateOnPress && isPressed())
+                mMaskedPaint.setColorFilter(mDesaturateOnPress && isPressed()
                         ? mDesaturateColorFilter : null);
                 cacheCanvas.saveLayer(mBoundsF, mMaskedPaint,
                         Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG);

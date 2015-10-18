@@ -7,17 +7,17 @@ import rx.subjects.Subject;
 
 public class RxBus {
 
-    private final Subject<Object, Object> _bus = new SerializedSubject<>(PublishSubject.create());
+    private final Subject<Object, Object> bus = new SerializedSubject<>(PublishSubject.create());
 
     public void send(Object event) {
-        _bus.onNext(event);
+        bus.onNext(event);
     }
 
     public Observable<Object> toObservable() {
-        return _bus;
+        return bus;
     }
 
     public boolean hasObservers() {
-        return _bus.hasObservers();
+        return bus.hasObservers();
     }
 }
