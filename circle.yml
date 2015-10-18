@@ -14,11 +14,10 @@ dependencies:
 test:
     override:
         - ./gradlew clean build -PdisablePreDex --stacktrace
-    post:
-        - ls
-        - ls mobile
-        - ls mobile/build
-        - mkdir $CIRCLE_ARTIFACTS/lint
-        - mv mobile/build/outputs/lint-results* $CIRCLE_ARTIFACTS/lint
-        - mkdir $CIRCLE_ARTIFACTS/apk
-        - mv mobile/build/outputs/apk* $CIRCLE_ARTIFACTS/apk
+
+general:
+  artifacts:
+    - "**/build/outputs/apk"
+    - "**/build/outputs/mapping/**/**/mapping.txt"
+    - "**/build/reports/checkstyle/checkstyle.xml"
+    - "**/build/outputs/lint-**"
