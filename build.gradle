@@ -61,3 +61,7 @@ subprojects {
         daggerVersion = '2.0.1'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
