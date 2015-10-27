@@ -1,5 +1,6 @@
 package technology.mainthread.apps.moment.ui.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -7,13 +8,18 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.ConnectionResult;
@@ -49,6 +55,7 @@ public class SignInFragment extends BaseFragment implements GoogleApiClient.Conn
 
     private static final String SAVED_STATE_SIGN_IN_PROGRESS = "SAVED_STATE_SIGN_IN_PROGRESS";
     private static final int RC_SIGN_IN = 0;
+    private static final int PERMISSION_GET_ACCOUNTS = 2;
 
     @Inject
     UserManager userManager;
@@ -275,6 +282,12 @@ public class SignInFragment extends BaseFragment implements GoogleApiClient.Conn
 
     @OnClick(R.id.btn_sign_in)
     void onSignInClicked() {
+        if (checkGetAccountsPermission()) {
+            doSignIn();
+        }
+    }
+
+    private void doSignIn() {
         mSignInButton.setEnabled(false);
         mSignInProgress = STATE_SIGN_IN;
         mGoogleApiClient.connect();
@@ -287,6 +300,26 @@ public class SignInFragment extends BaseFragment implements GoogleApiClient.Conn
                     .setCustomAnimations(R.animator.slide_in, R.animator.slide_out)
                     .replace(R.id.container, SignInFriendFinderFragment.newInstance())
                     .commit();
+        }
+    }
+
+    private boolean checkGetAccountsPermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.GET_ACCOUNTS);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.GET_ACCOUNTS}, PERMISSION_GET_ACCOUNTS);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_GET_ACCOUNTS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                doSignIn();
+            } else {
+                Toast.makeText(getActivity(), R.string.permission_get_accounts, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

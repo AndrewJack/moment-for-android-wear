@@ -94,5 +94,6 @@
     <string name="error_sign_out">Can\'t sign out</string>
     <string name="sent_by">Sent by %s</string>
     <string name="sent_to">Sent to %s</string>
+    <string name="permission_get_accounts">Cannot sign in without accounts permission</string>
 
 </resources>
