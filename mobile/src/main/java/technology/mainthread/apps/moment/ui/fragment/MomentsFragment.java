@@ -89,7 +89,8 @@ public class MomentsFragment extends BaseFragment implements SwipeRefreshLayout.
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        return size.x / 600;
+        int i = size.x / 600;
+        return i > 0 ? i : 1;
     }
 
     @Override
