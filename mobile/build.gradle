@@ -93,9 +93,7 @@ dependencies {
     prodWearApp project(path: ':wear', configuration: 'prodRelease')
 
     // Google Android Libraries
-    compile ("com.google.android.gms:play-services-analytics:${commonPlayServicesVersion}") {
-        exclude module: 'play-services-ads'
-    }
+    compile "com.google.android.gms:play-services-analytics:${commonPlayServicesVersion}"
     compile "com.google.android.gms:play-services-gcm:${commonPlayServicesVersion}"
     compile "com.google.android.gms:play-services-plus:${commonPlayServicesVersion}"
     compile "com.google.android.gms:play-services-identity:${commonPlayServicesVersion}"
