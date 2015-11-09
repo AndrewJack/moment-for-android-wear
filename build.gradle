@@ -46,6 +46,16 @@ subprojects {
             }
         }
 
+        // keystore property
+        def Properties localProps = new Properties()
+        if (file('../local.properties').exists()) {
+            localProps.load(new FileInputStream(file('../local.properties')))
+        }
+        keyProps = new Properties()
+        if (localProps['keystore.props.file'] != null) {
+            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+        }
+
         versionMajor = 1
         versionMinor = 2
         versionPatch = 0

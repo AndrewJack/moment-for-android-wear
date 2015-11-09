@@ -21,15 +21,6 @@ android {
 
     signingConfigs {
         release {
-            def Properties localProps = new Properties()
-            def File localPropsFile = file('../local.properties')
-            if (localPropsFile.exists()) {
-                localProps.load(new FileInputStream(localPropsFile))
-            }
-            def Properties keyProps = new Properties()
-            if (localProps['keystore.props.file'] != null) {
-                keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
-            }
             storeFile keyProps["store"] != null ? file(keyProps["store"]) : null
             keyAlias keyProps["alias"] ?: ""
             storePassword keyProps["storePass"] ?: ""
@@ -58,7 +49,9 @@ android {
             applicationIdSuffix '.debug'
         }
         release {
-            signingConfig signingConfigs.release
+            if (keyProps["store"] != null) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
