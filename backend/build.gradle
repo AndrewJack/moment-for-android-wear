@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.google.appengine:gradle-appengine-plugin:1.9.27"
+        classpath "com.google.appengine:gradle-appengine-plugin:${appEngineLibVersion}"
     }
 }
 
@@ -28,7 +28,7 @@ dependencies {
     compile "com.google.appengine:appengine-endpoints:${appEngineLibVersion}"
     compile "com.google.appengine:appengine-endpoints-deps:${appEngineLibVersion}"
     compile "javax.servlet:servlet-api:2.5"
-    compile "com.googlecode.objectify:objectify:5.1.8"
+    compile "com.googlecode.objectify:objectify:5.1.9"
     compile "com.ganyo:gcm-server:1.0.2"
 
     testCompile "com.google.appengine:appengine-testing:${appEngineLibVersion}"
