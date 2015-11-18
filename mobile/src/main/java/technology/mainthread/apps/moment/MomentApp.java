@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
@@ -15,6 +16,8 @@ import com.squareup.leakcanary.RefWatcher;
 
 import java.util.HashMap;
 
+import io.fabric.sdk.android.Fabric;
+import technology.mainthread.apps.moment.data.CrashlyticsTree;
 import javax.inject.Inject;
 
 import technology.mainthread.apps.moment.data.StethoUtil;
@@ -50,8 +53,15 @@ public class MomentApp extends Application {
     private void setupAnalyticsTools() {
         boolean isProd = !BuildConfig.DEBUG && BuildConfig.FLAVOR.equals("prod");
 
-        // set up timber // TODO: add prod tree
-        Timber.plant(isProd ? new Timber.DebugTree() : new Timber.DebugTree());
+        // setup fabric
+        Crashlytics crashlytics = new Crashlytics.Builder().disabled(!isProd).build();
+        final Fabric fabric = new Fabric.Builder(this)
+                .kits(crashlytics)
+                .build();
+        Fabric.with(fabric);
+
+        // set up timber
+        Timber.plant(isProd ? new CrashlyticsTree() : new Timber.DebugTree());
 
         // set up analytics
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
