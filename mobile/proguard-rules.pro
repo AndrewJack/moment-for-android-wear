@@ -1,7 +1,3 @@
-# Google Play Services - ApacheHttpClient warnings
--keep class com.google.android.gms.** { *; }
--dontwarn com.google.android.gms.**
-
 # Butterknife
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
@@ -45,7 +41,8 @@
 
 # Crashalytics
 -keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
+-keep class com.crashlytics.android.**
+-keepattributes SourceFile,LineNumberTable
 
 # Logging
 -assumenosideeffects class android.util.Log {

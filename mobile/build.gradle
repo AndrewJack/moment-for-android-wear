@@ -51,6 +51,8 @@ android {
 
     buildTypes {
         debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-debug.pro'
             signingConfig signingConfigs.debug
             versionNameSuffix '_debug_' + gitSha()
             applicationIdSuffix '.debug'
