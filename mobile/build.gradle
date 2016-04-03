@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'com.getkeepsafe.dexcount'
 //apply plugin: 'io.fabric'
 
 repositories {
@@ -107,29 +106,24 @@ dependencies {
     compile "com.android.support:design:${commonSupportLibraryVersion}"
 
     // Crash logs
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
 
     // Other
     compile "com.github.traex.rippleeffect:library:1.3"
-    compile "com.squareup.okhttp:okhttp:2.6.0"
+    compile "com.squareup.okhttp:okhttp:2.7.5"
     compile "com.squareup.picasso:picasso:2.5.2"
     compile('de.psdev.licensesdialog:licensesdialog:1.8.0') { exclude module: 'support-v4' }
-    compile 'com.afollestad:material-dialogs:0.7.9.1'
+    compile('com.github.afollestad.material-dialogs:commons:0.8.5.7@aar') {
+        transitive = true
+    }
 
     // dev tools
-    debugCompile "com.facebook.stetho:stetho:1.2.0"
-    debugCompile "com.facebook.stetho:stetho-okhttp:1.2.0"
-    debugCompile "com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT"
-}
-
-dexcount {
-    includeClasses = false
-    includeFieldCount = false
-    printAsTree = true
-    orderByMethodCount = true
+    debugCompile "com.facebook.stetho:stetho:1.3.1"
+    debugCompile "com.facebook.stetho:stetho-okhttp:1.3.1"
+    debugCompile "com.squareup.leakcanary:leakcanary-android:1.4-beta2"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2"
 }
 
 android.variantFilter { variant ->
