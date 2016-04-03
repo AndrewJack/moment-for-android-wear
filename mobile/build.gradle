@@ -87,7 +87,7 @@ dependencies {
     // Dagger 2
     compile "com.google.dagger:dagger:${daggerVersion}"
     apt "com.google.dagger:dagger-compiler:${daggerVersion}"
-    provided "org.glassfish:javax.annotation:10.0-b28"
+    provided "javax.annotation:javax.annotation-api:1.2"
 
     // Android Wear
     devWearApp project(path: ':wear', configuration: 'devRelease')
