@@ -50,7 +50,7 @@ android {
 
     buildTypes {
         debug {
-            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-debug.pro'
             signingConfig signingConfigs.debug
             versionNameSuffix '_debug_' + gitSha()
@@ -60,7 +60,6 @@ android {
             if (keyProps["store"] != null) {
                 signingConfig signingConfigs.release
             }
-            shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
