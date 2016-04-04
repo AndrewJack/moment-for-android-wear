@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import okio.Okio;
 import rx.Observer;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
@@ -30,12 +31,12 @@ import static technology.mainthread.apps.moment.background.receiver.Connectivity
 import static technology.mainthread.apps.moment.common.data.vo.MomentType.DRAWING;
 
 // TODO: convert to sync intent service
-public class MomentSenderService extends Service {
+public class SenderService extends Service {
 
-    public enum StartCommand {
-        START, SEND
+    public @interface StartCommand {
+        int START = 1;
+        int SEND = 2;
     }
-
     private static final String PARAM_START_COMMAND = "param_start_command";
     private static final String PARAM_RECIPIENT = "param_recipient";
     private static final String PARAM_DRAWING = "param_drawing";
@@ -51,14 +52,14 @@ public class MomentSenderService extends Service {
     private int currentMomentId;
     private Subscription momentSubscription = Subscriptions.empty();
 
-    public static Intent getMomentSenderServiceStartIntent(Context context) {
-        Intent intent = new Intent(context, MomentSenderService.class);
+    public static Intent getSenderServiceStartIntent(Context context) {
+        Intent intent = new Intent(context, SenderService.class);
         intent.putExtra(PARAM_START_COMMAND, StartCommand.START);
         return intent;
     }
 
-    public static Intent getMomentSenderServiceSendIntent(Context context, long[] recipients, Bitmap drawing) {
-        Intent intent = new Intent(context, MomentSenderService.class);
+    public static Intent getSenderServiceSendIntent(Context context, long[] recipients, byte[] drawing) {
+        Intent intent = new Intent(context, SenderService.class);
         intent.putExtra(PARAM_START_COMMAND, StartCommand.SEND);
         intent.putExtra(PARAM_RECIPIENT, recipients);
         intent.putExtra(PARAM_DRAWING, drawing);
@@ -75,15 +76,15 @@ public class MomentSenderService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
-            StartCommand command = (StartCommand) intent.getSerializableExtra(PARAM_START_COMMAND);
+            int command = intent.getIntExtra(PARAM_START_COMMAND, 0);
             Timber.d("onStartCommand with command: %s", command);
             switch (command) {
-                case START:
+                case StartCommand.START:
                     sendNextInLine();
                     break;
-                case SEND:
+                case StartCommand.SEND:
                     long[] recipient = intent.getLongArrayExtra(PARAM_RECIPIENT);
-                    Bitmap drawing = intent.getParcelableExtra(PARAM_DRAWING);
+                    byte[] drawing = intent.getByteArrayExtra(PARAM_DRAWING);
                     queueMoment(convertToList(recipient), drawing);
                     break;
                 default:
@@ -105,12 +106,12 @@ public class MomentSenderService extends Service {
         return null;
     }
 
-    private void queueMoment(List<Long> recipients, Bitmap drawing) {
+    private void queueMoment(List<Long> recipients, byte[] drawing) {
         if (!recipients.isEmpty() && drawing != null) {
             String fileName = String.valueOf(System.currentTimeMillis());
             try {
                 FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-                drawing.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+                outputStream.write(drawing);
                 outputStream.close();
             } catch (Exception e) {
                 Timber.e(e, "Cannot save drawing");
@@ -162,7 +163,7 @@ public class MomentSenderService extends Service {
                         @Override
                         public void onError(Throwable e) {
                             if (!connectivityHelper.isConnected()) {
-                                enableNetworkChangeReceiver(MomentSenderService.this, true);
+                                enableNetworkChangeReceiver(SenderService.this, true);
                             }
                             stopSelf();
                         }

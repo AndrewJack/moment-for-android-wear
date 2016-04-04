@@ -75,7 +75,7 @@
         <!-- Services -->
         <service android:name=".background.service.GcmListenerService" />
         <service
-            android:name=".background.service.MomentWearListenerService"
+            android:name=".background.service.MobileWearListenerService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
@@ -103,7 +103,7 @@
                 android:resource="@xml/syncadapter" />
         </service>
         <service
-            android:name=".background.service.MomentSenderService"
+            android:name=".background.service.SenderService"
             android:exported="false" />
         <service
             android:name=".background.service.UpdateFriendsIntentService"

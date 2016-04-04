@@ -14,7 +14,7 @@ import technology.mainthread.apps.moment.background.ConnectivityHelper;
 
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
-import static technology.mainthread.apps.moment.background.service.MomentSenderService.getMomentSenderServiceStartIntent;
+import static technology.mainthread.apps.moment.background.service.SenderService.getSenderServiceStartIntent;
 
 public class ConnectivityBroadcastReceiver extends BroadcastReceiver {
 
@@ -35,7 +35,7 @@ public class ConnectivityBroadcastReceiver extends BroadcastReceiver {
 
             if (connectivityHelper.isConnected()) {
                 enableNetworkChangeReceiver(context, false); // disable receiver
-                context.startService(getMomentSenderServiceStartIntent(context));
+                context.startService(getSenderServiceStartIntent(context));
             }
         }
     }

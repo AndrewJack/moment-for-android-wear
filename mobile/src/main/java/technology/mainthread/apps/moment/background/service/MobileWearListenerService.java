@@ -1,8 +1,5 @@
 package technology.mainthread.apps.moment.background.service;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Asset;
 import com.google.android.gms.wearable.DataEvent;
@@ -20,6 +17,8 @@ import java.io.ObjectInputStream;
 
 import javax.inject.Inject;
 
+import okio.BufferedSource;
+import okio.Okio;
 import technology.mainthread.apps.moment.MomentApp;
 import technology.mainthread.apps.moment.common.Constants;
 import technology.mainthread.apps.moment.data.WearApi;
@@ -29,7 +28,7 @@ import timber.log.Timber;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static technology.mainthread.apps.moment.common.Constants.CONNECTION_TIME_OUT_MS;
 
-public class MomentWearListenerService extends WearableListenerService {
+public class MobileWearListenerService extends WearableListenerService {
 
     @Inject
     @WearApi
@@ -75,7 +74,7 @@ public class MomentWearListenerService extends WearableListenerService {
 //            Crashlytics.setString("product", map.getString("product"));
 //            Crashlytics.logException(ex);
 
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             Timber.e(e, "track exception failed");
         }
     }
@@ -106,22 +105,22 @@ public class MomentWearListenerService extends WearableListenerService {
         DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
         long[] recipient = {dataMapItem.getDataMap().getLong(Constants.KEY_RECIPIENT)};
 
-        Asset drawingAsset = dataMapItem.getDataMap().getAsset(Constants.KEY_DRAWING);
-        Bitmap bitmap = loadBitmapFromAsset(drawingAsset);
+        Asset asset = dataMapItem.getDataMap().getAsset(Constants.KEY_DRAWING);
+        byte[] assetBytes = loadBytesFromAsset(asset);
 
-        if (recipient.length > 0 && bitmap != null) {
+        if (recipient.length > 0 && assetBytes != null && assetBytes.length > 0) {
             Timber.d("start sender service");
-            startService(MomentSenderService.getMomentSenderServiceSendIntent(this, recipient, bitmap));
+            startService(SenderService.getSenderServiceSendIntent(this, recipient, assetBytes));
         }
     }
 
-    private Bitmap loadBitmapFromAsset(Asset asset) {
+    private byte[] loadBytesFromAsset(Asset asset) {
         if (asset == null) {
             Timber.e("Asset is null");
             return null;
         }
 
-        Bitmap drawing = null;
+        byte[] output = null;
         if (mGoogleApiClient.blockingConnect(CONNECTION_TIME_OUT_MS, MILLISECONDS).isSuccess()) {
 
             InputStream assetInputStream = Wearable.DataApi
@@ -131,10 +130,13 @@ public class MomentWearListenerService extends WearableListenerService {
                 mGoogleApiClient.disconnect();
             }
 
-            if (assetInputStream != null) {
-                drawing = BitmapFactory.decodeStream(assetInputStream);
+            BufferedSource buffer = Okio.buffer(Okio.source(assetInputStream));
+            try {
+                output = buffer.readByteArray();
+            } catch (IOException e) {
+                Timber.e(e, "converting to bytes error");
             }
         }
-        return drawing;
+        return output;
     }
 }

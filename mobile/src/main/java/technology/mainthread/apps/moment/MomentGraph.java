@@ -3,8 +3,8 @@ package technology.mainthread.apps.moment;
 import technology.mainthread.apps.moment.background.receiver.AccountChangedReceiver;
 import technology.mainthread.apps.moment.background.receiver.ConnectivityBroadcastReceiver;
 import technology.mainthread.apps.moment.background.service.GcmListenerService;
-import technology.mainthread.apps.moment.background.service.MomentSenderService;
-import technology.mainthread.apps.moment.background.service.MomentWearListenerService;
+import technology.mainthread.apps.moment.background.service.SenderService;
+import technology.mainthread.apps.moment.background.service.MobileWearListenerService;
 import technology.mainthread.apps.moment.background.service.UpdateFriendsIntentService;
 import technology.mainthread.apps.moment.background.sync.MomentSyncAdapter;
 import technology.mainthread.apps.moment.ui.activity.MainActivity;
@@ -50,11 +50,11 @@ public interface MomentGraph {
     // Service
     void inject(GcmListenerService gcmListenerService);
 
-    void inject(MomentWearListenerService momentWearListenerService);
+    void inject(MobileWearListenerService mobileWearListenerService);
 
     void inject(MomentSyncAdapter momentSyncAdapter);
 
-    void inject(MomentSenderService momentSenderService);
+    void inject(SenderService senderService);
 
     void inject(UpdateFriendsIntentService updateFriendsIntentService);
 
