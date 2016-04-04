@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 
 import javax.inject.Inject;
 
@@ -29,11 +30,13 @@ public class ConnectivityBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        MomentApp.get(context).inject(this);
+        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+            MomentApp.get(context).inject(this);
 
-        if (connectivityHelper.isConnected()) {
-            enableNetworkChangeReceiver(context, false); // disable receiver
-            context.startService(getMomentSenderServiceStartIntent(context));
+            if (connectivityHelper.isConnected()) {
+                enableNetworkChangeReceiver(context, false); // disable receiver
+                context.startService(getMomentSenderServiceStartIntent(context));
+            }
         }
     }
 

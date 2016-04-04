@@ -1,5 +1,6 @@
 package technology.mainthread.apps.moment.background.receiver;
 
+import android.accounts.AccountManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +20,12 @@ public class AccountChangedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        MomentApp.get(context).inject(this);
+        if (AccountManager.LOGIN_ACCOUNTS_CHANGED_ACTION.equals(intent.getAction())) {
+            MomentApp.get(context).inject(this);
 
-        if (!userManager.isSignedIn() && preferences.getUserId() != 0) {
-            userManager.logOut();
+            if (!userManager.isSignedIn() && preferences.getUserId() != 0) {
+                userManager.logOut();
+            }
         }
     }
 }
